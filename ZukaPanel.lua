@@ -1,7 +1,7 @@
 --[[
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/zukatechlive/ZukaTechPanel/refs/heads/main/ZukaSPanel.lua"))() --New 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/zukatech1/ZukaTechPanel/refs/heads/main/Source.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/zukatech1/ZukaTechPanel/refs/heads/main/Source.lua"))() -- Old
 
 Made By Zuka. @OverRuka on ROBLOX.
 
@@ -620,6 +620,7 @@ end
 		MainWindow.Size = UDim2.new(0, 520, 0, 420);
 		MainWindow.Position = UDim2.new(0.5, -260, 0.5, -210);
 		MainWindow.BackgroundColor3 = Color3.fromRGB(35, 35, 45);
+        MainWindow.BackgroundTransparency = 0.3
 		MainWindow.BorderSizePixel = 0;
 		MainWindow.Active = true;
 		MainWindow.ClipsDescendants = true;
@@ -663,7 +664,7 @@ end
 		TitleLabel.Position = UDim2.new(0, 10, 0, 0);
 		TitleLabel.BackgroundTransparency = 1;
 		TitleLabel.Font = Enum.Font.Code;
-		TitleLabel.Text = "Gaming Chair v2.2";
+		TitleLabel.Text = "GC";
 		TitleLabel.TextColor3 = Color3.fromRGB(200, 220, 255);
 		TitleLabel.TextSize = 16;
 		TitleLabel.TextXAlignment = Enum.TextXAlignment.Left;
@@ -886,12 +887,12 @@ end
 				local absolutePos = partDropdown.AbsolutePosition; local guiPos = MainWindow.AbsolutePosition;
 				partDropdownFrame.Size = UDim2.new(0, partDropdown.AbsoluteSize.X, 0, #parts * 22)
 				partDropdownFrame.Position = UDim2.new(0, absolutePos.X - guiPos.X, 0, absolutePos.Y - guiPos.Y + 22)
-				partDropdownFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 40); partDropdownFrame.BackgroundTransparency = 0.2; partDropdownFrame.BorderSizePixel = 0; partDropdownFrame.ZIndex = 5;
+				partDropdownFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 40); partDropdownFrame.BackgroundTransparency = 0.3; partDropdownFrame.BorderSizePixel = 0; partDropdownFrame.ZIndex = 5;
 				makeUICorner(partDropdownFrame, 6); local stroke = Instance.new("UIStroke", partDropdownFrame); stroke.Color = Color3.fromRGB(80, 80, 90); stroke.Thickness = 1;
 				for i, part in ipairs(parts) do local btn = Instance.new("TextButton", partDropdownFrame); btn.Size, btn.Position = UDim2.new(1, 0, 0, 22), UDim2.new(0, 0, 0, (i-1)*22); btn.BackgroundColor3, btn.TextColor3 = Color3.fromRGB(40,40,40), Color3.fromRGB(255,255,255); btn.Font, btn.TextSize, btn.Text = Enum.Font.Code, 15, part; makeUICorner(btn, 6); table.insert(janitor, btn.MouseButton1Click:Connect(function() partDropdown.Text = part; if partDropdownFrame then partDropdownFrame:Destroy() end; partDropdownOpen = false end)) end
 			end));
 			
-			local fovRadius = 55;
+			local fovRadius = 75;
 			local smoothingEnabled = false;
 			local smoothingFactor = 0.2;
 			local selectedPlayerTarget, selectedPart = nil, nil;
@@ -1372,7 +1373,7 @@ function Modules.AstralProjection:Initialize()
 end
 RegisterCommand({
     Name = "astral",
-    Aliases = {"desync", "unsync"},
+    Aliases = {},
     Description = "Toggles astral projection, desyncing yourself remaining invisible to others."
 }, function()
     Modules.AstralProjection:Toggle()
@@ -1913,7 +1914,7 @@ function Modules.CommandBar:Initialize(): ()
     TitleLabel.Size = UDim2.new(1, -60, 1, 0)
     TitleLabel.BackgroundTransparency = 1
     TitleLabel.Font = self.Theme.Font
-    TitleLabel.Text = "FORENSIC TERMINAL_V10"
+    TitleLabel.Text = "Gamer."
     TitleLabel.TextColor3 = self.Theme.Accent
     TitleLabel.TextSize = 12
     TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
@@ -2170,7 +2171,7 @@ function Modules.CommandBar:Initialize(): ()
     end)
 
     self:AddOutput("ZUKATECH_V10_INITIALIZED", self.Theme.Accent)
-    self:AddOutput("AUTH_TOKEN_ACCEPTED: " .. Players.LocalPlayer.Name, self.Theme.Accent)
+    self:AddOutput("VIBE_ACCEPTED: " .. Players.LocalPlayer.Name, self.Theme.Accent)
     self:AddOutput("Type 'cmds' for documentation or ';' to toggle shell.", self.Theme.Text)
 end
 
@@ -2641,7 +2642,7 @@ Modules.Fly = {
                 self:Enable()
              end
          end
-    RegisterCommand({ Name = "fly", Aliases = {"flight"}, Description = "Toggles smooth flight mode." }, function()
+    RegisterCommand({ Name = "fly", Aliases = {"flight"}, Description = "The most boring exploit anyone can use." }, function()
          Modules.Fly:Toggle()
     end)
 
@@ -2750,7 +2751,7 @@ function Modules.NoClip:Toggle()
     end
 end
 
-RegisterCommand({ Name = "noclip", Aliases = {"nc"}, Description = "Allows you to fly through walls and objects." }, function()
+RegisterCommand({ Name = "noclip", Aliases = {"nc"}, Description = "Allows you to walk through walls" }, function()
     Modules.NoClip:Toggle()
 end)
 
@@ -13685,6 +13686,10 @@ context:Register("SWORDIFY", {Name = "Swordify (Linked)", IconMap = Explorer.Mis
 				elseif n == "Recoil" then return 0
                 elseif n == "BulletPerShot" then return 15
                 elseif n == "FriendlyFire" then return true
+                elseif n == "ExplosionRadius" then return 9999
+                elseif n == "SuperRicochet" then return true
+                elseif n == "RicochetAmount" then return 500
+                --elseif n == "ExplosiveEnabled" then return true
 
 				-- Physics & Accuracy
 				elseif n == "Recoil" or n == "Spread" or n == "Accuracy" then return 0
